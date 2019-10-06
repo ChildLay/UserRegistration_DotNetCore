@@ -108,9 +108,15 @@ namespace UserRegistration.Controllers
                     RegisteredDate = viewModel.RegisteredDate.Value.ToString("dd/MM/yyyy")
                 };
 
-                user.EventDate = viewModel.Day1 ? "Day 1," : string.Empty;
-                user.EventDate += viewModel.Day2 ? "Day 2," : string.Empty;
-                user.EventDate += viewModel.Day3 ? "Day 3" : string.Empty;
+                List<string> days = new List<string>();
+                if (viewModel.Day1)
+                    days.Add("Day 1");
+                if (viewModel.Day2)
+                    days.Add("Day 2");
+                if (viewModel.Day3)
+                    days.Add("Day 3");
+
+                user.EventDate = string.Join(",", days.ToArray());
 
                await SaveUser(user);
                 Response.Redirect("UserListing");

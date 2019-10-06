@@ -26,8 +26,12 @@ namespace UserRegistrationWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UserDBContext>(opt =>
-               opt.UseInMemoryDatabase("UserDBContext"));
+            //services.AddDbContext<UserDBContext>(opt =>
+            //   opt.UseInMemoryDatabase("UserDBContext"));
+            //           
+            
+            services.AddDbContext<UserDBContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("UserDBContext")));
             services.AddControllers();
         }
 
