@@ -1,0 +1,110 @@
+﻿@model UserRegistration.Models.UserRegisterViewModel
+@{
+    ViewData["Title"] = "User Registration";
+}
+<style>
+    span.col.col-md-10.text-danger.field-validation-error {
+        text-align: center;
+    }
+</style>
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+
+<!--<div asp-validation-summary="ModelOnly" class="text-danger"></div>-->
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center"> <h5>User Registration</h5></div>
+        <div class="card-body">
+            <form method="post" class="form-group" asp-action="Create" name="UserForm" onsubmit="return checkCheckBoxes(this);">
+
+                <div class="form-inline">
+                    <label asp-for="Name" class="col col-md-3"></label>
+
+
+                    <input asp-for="Name" class="col col-md-5 form-control" id="Username" />
+                    <span asp-validation-for="Name" class="col col-md-10 text-danger"></span>
+
+                </div>
+
+
+
+                <div class="form-inline" style="padding-top:15px;">
+                    <label asp-for="Email" class="col col-md-3"></label>
+                    <input asp-for="Email" type="text" class="col col-md-5 form-control" id="Useremail" />
+                    <span asp-validation-for="Email" class="col col-md-10 text-danger"></span>
+                </div>
+                <div class="form-inline" style="padding-top:10px;">
+                    <label class="col col-md-3" asp-for="Gender"></label>
+
+                    <label class="col col-sm-2 form-check-label">
+                        <input type="radio" name="Gender" id="Male" value="Male" asp-for="Gender">Male
+                    </label>
+
+                    <label class="col col-sm-2 form-check-label">
+                        <input type="radio" name="Gender" value="Female" id="Famale" asp-for="Gender">Female
+                    </label>
+                    <span asp-validation-for="Gender" class="col col-md-10 text-danger"></span>
+                </div>
+                <div class="form-inline" style="padding-top:10px;">
+                    <label asp-for="RegisteredDate" class="col col-md-3"></label>
+                    <input asp-for="RegisteredDate" class="col col-md-5 form-control" />
+                    <span asp-validation-for="RegisteredDate" class="col col-md-10 text-danger"></span>
+                </div>
+
+                <div class="form-inline" style="padding-top:10px;">
+                    <label class="col col-md-3"> Selected Days:</label>
+
+                    <div class="col col-md-8 form-check-inline">
+
+                        <label class="col col-sm-2 form-check-label">
+                            <input type="checkbox" class="form-check-input" asp-for="Day1">Day 1
+                          
+                        </label>
+                        <label class="col col-sm-2 form-check-label">
+                            <input type="checkbox" class="form-check-input" asp-for="Day2">Day 2
+                          
+                        </label>
+                        <label class="col col-sm-2 form-check-label">
+                            <input type="checkbox" class="form-check-input" asp-for="Day3">Day 3
+                       
+                        </label>
+
+                    </div>
+                    
+
+                </div>
+
+
+                <div class="form-inline" style="padding-top:10px;">
+                    <label asp-for="AdditionalRequest" class="col col-md-3"></label>
+                    <textarea asp-for="AdditionalRequest" type="text" class="col col-md-5 form-control" id="UserAdditionalRequest" cols="50" rows="4"></textarea>
+                    <span asp-validation-for="AdditionalRequest" class="col col-md-10 text-danger"></span>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" language="JavaScript">
+   
+    function checkCheckBoxes(UserForm) {
+    //alert('T');
+
+         var checked = $("input[type=checkbox]:checked").length;    
+        if (checked == 0) {
+             alert('Please select at-least one check box!');
+           
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
+</script> 
