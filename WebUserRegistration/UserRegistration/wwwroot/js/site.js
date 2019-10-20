@@ -38,12 +38,13 @@
     row.appendChild(cell);
 
     tableBody.appendChild(row);
+    var _rowIndex = 1;
 
     data.forEach(function (rowData) {
         var row = document.createElement('tr');
 
         var cell = document.createElement('td');
-        cell.appendChild(document.createTextNode(rowData.Id));
+        cell.appendChild(document.createTextNode(_rowIndex));
         row.appendChild(cell);
 
         var cell = document.createElement('td');
@@ -70,6 +71,7 @@
         cell.appendChild(document.createTextNode(rowData.AdditionalRequest));
         row.appendChild(cell);
 
+        _rowIndex++;
         tableBody.appendChild(row);
     });
 
